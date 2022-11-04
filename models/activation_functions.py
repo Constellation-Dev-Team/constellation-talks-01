@@ -9,5 +9,5 @@ ACTIVATION_FUNCTIONS = {
 ACTIVATION_FUNCTIONS_GRADIENTS = {
     'relu': lambda x: np.where(x > 0, 1, 0),
     'sigmoid': lambda x: ACTIVATION_FUNCTIONS['sigmoid'](x) * (1 - ACTIVATION_FUNCTIONS['sigmoid'](x)),
-    'identity': lambda x: 1,
+    'identity': lambda x: np.ones(x.shape),
 }

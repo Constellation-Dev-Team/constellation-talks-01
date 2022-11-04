@@ -4,6 +4,7 @@
 https://web.stanford.edu/class/cs224n/readings/gradient-notes.pdf
 https://github.com/peterroelants/peterroelants.github.io/tree/main/notebooks/neural_net_implementation
 https://towardsdatascience.com/lets-code-a-neural-network-in-plain-numpy-ae7e74410795
+Neural Networks are Decision Trees: https://arxiv.org/abs/2210.05189
 
 ## Bons blogs de ML & Mercado Financeiro
 https://www.twosigma.com/articles/

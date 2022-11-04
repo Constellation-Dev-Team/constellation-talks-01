@@ -23,15 +23,6 @@ class SingleLayerPerceptron:
         self.hidden_activation_function_name = hidden_activation_function
         self.hidden_activation_function = ACTIVATION_FUNCTIONS[hidden_activation_function]
         self.hidden_activation_function_grad = ACTIVATION_FUNCTIONS_GRADIENTS[hidden_activation_function]
-
-    def get_act_func_gradient(self, X):
-        if self.hidden_activation_function_name == 'identity':
-            return np.ones(X.shape)
-        elif self.hidden_activation_function_name == 'relu':
-            return self.hidden_activation_function_grad(self.A1)
-        elif self.hidden_activation_function_name == 'sigmoid':
-            return np.multiply(self.A1, 1 - self.A1)
-        raise Exception('Função não suportada')
     
     def train(self, X, y):
         iter_num = 0
@@ -47,7 +38,8 @@ class SingleLayerPerceptron:
             JWo = self.A1.T @ loss
             Jbo =  np.sum(loss, axis=0, keepdims=True)
             # Compute the gradients of the hidden layer
-            Eh = np.multiply(self.get_act_func_gradient(self.A1), (loss @ self.output_weights.T))
+            grad = self.hidden_activation_function_grad(self.A1)
+            Eh = grad * (loss @ self.output_weights.T)
             JWh =  X.T @ Eh
             Jbh = np.sum(Eh, axis=0, keepdims=True)
 
