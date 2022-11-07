@@ -28,29 +28,29 @@ class SingleLayerPerceptron:
     
     def train(self, X, y):
         iter_num = 0
-        loss = 10
+        delta2 = 10
         # try:
-        while np.abs(np.mean(loss)) > self.min_loss_error and iter_num < self.max_iter_num:
+        while np.abs(np.mean(delta2)) > self.min_loss_error and iter_num < self.max_iter_num:
             iter_num += 1
 
             h0 = self.predict(X)
             y = np.array(y)
-            loss = (h0 - y.reshape(h0.shape))
+            delta2 = (h0 - y.reshape(h0.shape))
 
-            JWo = self.A1.T @ loss
-            Jbo =  np.sum(loss, axis=0, keepdims=True)
+            dJW2 = self.A1.T @ delta2
+            dJb2 =  np.sum(delta2, axis=0, keepdims=True)
             # Compute the gradients of the hidden layer
             grad = self.hidden_activation_function_grad(self.A1)
-            Eh = grad * (loss @ self.output_weights.T)
-            JWh =  X.T @ Eh
-            Jbh = np.sum(Eh, axis=0, keepdims=True)
+            delta1 = grad * (delta2 @ self.output_weights.T)
+            JW1 =  X.T @ delta1
+            Jb1 = np.sum(delta1, axis=0, keepdims=True)
 
-            self.hidden_weights -= self.learning_rate * JWh
-            self.hidden_bias -= self.learning_rate * Jbh
-            self.output_weights -= self.learning_rate * JWo
-            self.output_bias -= self.learning_rate * Jbo
+            self.hidden_weights -= self.learning_rate * JW1
+            self.hidden_bias -= self.learning_rate * Jb1
+            self.output_weights -= self.learning_rate * dJW2
+            self.output_bias -= self.learning_rate * dJb2
             
-            e = loss.mean()
+            e = delta2.mean()
             self.saved_errors.append(e)
             print(f"Época: {iter_num} Erro: {e}")
         # except:
