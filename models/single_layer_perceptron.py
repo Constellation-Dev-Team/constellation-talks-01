@@ -4,8 +4,10 @@ import pandas as pd
 from .activation_functions import ACTIVATION_FUNCTIONS, ACTIVATION_FUNCTIONS_GRADIENTS
 
 class SingleLayerPerceptron:
-    weights = []
     learning_rate = 0.01
+    max_iter_num = 30000
+    min_loss_error = 0.01
+
     
     def __init__(self, input_size, layer_size=10, ouput_size=1, hidden_activation_function='relu'):
         self.n_features = input_size
@@ -28,7 +30,7 @@ class SingleLayerPerceptron:
         iter_num = 0
         loss = 10
         # try:
-        while np.abs(np.mean(loss)) > 0.01 and iter_num < 30000:
+        while np.abs(np.mean(loss)) > self.min_loss_error and iter_num < self.max_iter_num:
             iter_num += 1
 
             h0 = self.predict(X)

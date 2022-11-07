@@ -3,6 +3,8 @@ from .activation_functions import ACTIVATION_FUNCTIONS, ACTIVATION_FUNCTIONS_GRA
 
 class Perceptron:
     learning_rate = 0.01
+    max_iter_num = 10000
+    min_loss_error = 0.01
 
     def __init__(self, size, activation_function='identity'):
         self.n_features = size
@@ -18,7 +20,7 @@ class Perceptron:
     def train(self, X, Y):
         iter_num = 0
         e = 10
-        while np.abs(e).sum() > 0.01 and iter_num < 10000:
+        while np.abs(e).mean() > self.min_loss_error and iter_num < self.max_iter_num:
             iter_num += 1
 
             h0 = self.predict(X)

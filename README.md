@@ -21,5 +21,5 @@ https://www.amazon.com.br/Data-Science-para-neg%C3%B3cios-Fawcett/dp/8576089726/
 ### Intermediário
 The Elements of Statistical Learning: https://www.amazon.com.br/Elements-Statistical-Learning-Inference-Prediction/dp/0387848576/   
 
-## Avançado
+### Avançado
 Advances in Financial Machine Learning: https://www.amazon.com.br/gp/product/1119482089/  
